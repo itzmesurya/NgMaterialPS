@@ -1,0 +1,7 @@
+{
+  "name": "ngmaterialps",
+  "dependencies": {
+    "angular": "registry:dt/angular#1.6.0+20170321201455",
+    "angular-material": "registry:dt/angular-material#1.1.0+20170315084937"
+  }
+}

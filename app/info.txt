@@ -1,0 +1,14 @@
+tsd is deprecated (you can see it here). The following steps helped me install the type definitions.
+
+In the application folder
+
+Delete typings folder (if it exists)
+Run the following commands
+
+npm init
+
+npm install --save @types/angular
+
+npm install --save @types/jquery
+
+npm install --save @types/lodash
