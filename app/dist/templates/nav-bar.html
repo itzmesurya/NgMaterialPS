@@ -1,0 +1,26 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="track" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-toolbar>
+        <h1>Contacts</h1>
+    </md-toolbar>
+    <div layout-padding>
+        <md-autocomplete md-items="item in vm.users | filter:vm.searchText" md-item-text="item.name" md-selected-item="vm.selected"
+            md-search-text="vm.searchText" md-min-length="2" placeholder="filter">
+            <md-item-template>
+                <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+            </md-item-template>
+            <md-not-found>
+                No name matching "{{vm.searchText}}" were found.
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+    <md-content>
+        <md-list dense>
+            <md-list-item ng-repeat="user in vm.users | filter:vm.searchText | orderBy:'name'">
+                <button md-button ng-click="vm.selectUser(user)" ng-class="{'selected':user === vm.selected}">
+                <md-icon md-svg-icon="face" class="md24"></md-icon>
+                {{user.name}}
+                </button>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
