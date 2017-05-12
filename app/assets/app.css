@@ -25,7 +25,7 @@ md-toolbar .md-toolbar-tools h1{
 
 /* Select Dropdown CSS */
 
-md-input-container {
+md-input-container.select-dropdown{
     width: 20%;
 }
 
@@ -50,3 +50,63 @@ md-select-menu[multiple] md-option.md-checkbox-enabled .md-container {
 }
 
 /* End Select Dropdown CSS */
+
+/* Data Table CSS */
+
+table.md-table.md-row-select tbody.md-body > tr.md-row:not([disabled]):hover {
+   background-color: #EEF5F9 !important;  
+}
+
+table.md-table td.md-cell.md-numeric, table.md-table th.md-column.md-numeric {
+    text-align: center;
+}
+
+table.md-table td.md-cell, table.md-table th.md-column {
+    color: #607188;
+}
+
+md-checkbox.md-default-theme:not(.md-checked) .md-icon, md-checkbox:not(.md-checked) .md-icon {
+    border: 2px solid rgba(165,181,203,.53);
+}
+
+md-checkbox.md-default-theme.md-checked .md-icon, md-checkbox.md-checked .md-icon {
+    background-color: #42a5f5;
+    border-radius: 3px;
+}
+
+table.md-table.md-row-select tbody.md-body > tr.md-row.md-selected {
+   background-color: #E8F0FE!important; 
+}
+
+table.md-table td.md-cell .edit-icon {
+    background: #E8F0FE;
+    border: none;
+    border-radius: 100%;
+    height: 35px;
+    margin: 0 6px;
+    width: 35px;
+    display: inline-block;
+    line-height: 3em;
+    text-indent: 5px;
+    color: #688696;
+}
+
+table.md-table td.md-cell .edit-icon .material-icons {
+    margin-left: -4px;
+    margin-top: 5px;
+}
+
+table.md-table.md-row-select tbody.md-body > tr.md-row:not([disabled]):hover td a.edit-icon {
+    background: #688696;
+    color: #fff;
+}
+
+table.md-table th.md-column .btn.btn-fab {
+    position: absolute;
+    top: 3px;
+    z-index: 10;
+    right: 20%;
+}
+    
+
+/* End Data Table CSS */

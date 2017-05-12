@@ -3,7 +3,7 @@
 <h2>{{vm.selected.name}}</h2>
 
 
-<md-input-container>
+<md-input-container class="select-dropdown">
     <label>State</label>
     <md-select ng-model="vm.userState">
         <md-option class="select-option"><em>None</em></md-option>
@@ -17,7 +17,7 @@
     <div>
         <h1 class="md-title">Pick your pizza below</h1>
         <div layout="row">
-            <md-input-container>
+            <md-input-container class="select-dropdown">
                 <label>Topping</label>
                 <md-select ng-model="vm.selectedToppings" multiple>
 
@@ -36,10 +36,7 @@
 </div>
 
 <md-card flex>
-    <md-card-header>
-        <md-card-header-text>
-        </md-card-header-text>
-    </md-card-header>
+    
     <md-card-content>
         <!--<div id="grid1" ui-grid="{ data: vm.myData }" class="grid"></div>-->
         <md-table-container>
@@ -59,6 +56,9 @@
                         <th md-column md-order-by="comment">
                             <md-icon>comments</md-icon>
                             <span>Comments</span>
+                        </th>
+                        <th md-column>
+                            Edit
                         </th>
                     </tr>
                 </thead>
@@ -80,6 +80,11 @@
                         <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
                         <td md-cell ng-click="vm.editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
                             {{dessert.comment || 'Add a comment'}}
+                        </td>
+                        <td md-cell>
+                            <a href="#" class="edit-icon">
+                                <i class="material-icons">mode_edit</i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
