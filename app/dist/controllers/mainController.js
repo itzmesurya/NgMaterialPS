@@ -2,7 +2,105 @@
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
-        function MainController($mdSidenav) {
+        function MainController($mdSidenav, testDataService, $mdEditDialog, $q, $timeout) {
+            var vm = this;
+            /**
+             * Code to test the md-data-table - start
+             */
+
+            this.selectedGrid = [];
+            this.limitOptions = [5, 10, 15];
+
+            this.options = {
+                rowSelection: true,
+                multiSelect: true,
+                autoSelect: true,
+                decapitate: false,
+                largeEditDialog: false,
+                boundaryLinks: false,
+                limitSelect: true,
+                pageSelect: true
+            };
+
+            this.query = {
+                order: 'name',
+                limit: 5,
+                page: 1
+            };
+
+            this.deserts = testDataService.getDeserts();
+
+            this.editComment = function (event, dessert) {
+                event.stopPropagation(); // in case autoselect is enabled
+
+                var editDialog = {
+                    modelValue: dessert.comment,
+                    placeholder: 'Add a comment',
+                    save: function (input) {
+                        if (input.$modelValue === 'Donald Trump') {
+                            input.$invalid = true;
+                            return $q.reject();
+                        }
+                        if (input.$modelValue === 'Bernie Sanders') {
+                            dessert.comment = 'FEEL THE BERN!';
+                            return dessert.comment;
+                        }
+                        dessert.comment = input.$modelValue;
+                    },
+                    targetEvent: event,
+                    title: 'Add a comment',
+                    validators: {
+                        'md-maxlength': 30
+                    }
+                };
+
+                this.promise = null;
+
+                if (this.options.largeEditDialog) {
+                    this.promise = $mdEditDialog.large(editDialog);
+                } else {
+                    this.promise = $mdEditDialog.large(editDialog);
+                }
+
+                this.promise.then(function (ctrl) {
+                    var input = ctrl.getInput();
+
+                    input.$viewChangeListeners.push(function () {
+                        input.$setValidity('test', input.$modelValue !== 'test');
+                    });
+                });
+            };
+
+            this.toggleLimitOptions = function () {
+                this.limitOptions = this.limitOptions ? undefined : [5, 10, 15];
+            };
+
+            this.getTypes = function () {
+                return ['Candy', 'Ice cream', 'Other', 'Pastry'];
+            };
+
+            this.loadStuff = function () {
+                this.promise = $timeout(function () {
+                    // loading
+                }, 2000);
+            };
+
+            this.logItem = function (item) {
+                console.log(item.name, 'was selected');
+            };
+
+            this.logOrder = function (order) {
+                console.log('order: ', order);
+            };
+
+            this.logPagination = function (page, limit) {
+                console.log('page: ', page);
+                console.log('limit: ', limit);
+            };
+            /**
+             * Code to test the md-data-table - start
+             */
+
             /**
              * Custom code
              */
@@ -346,7 +444,7 @@ var ContactManagerApp;
         };
         return MainController;
     }());
-    MainController.$inject = ['$mdSidenav'];
+    MainController.$inject = ['$mdSidenav', 'testDataService', '$mdEditDialog', '$q', '$timeout'];
     ContactManagerApp.MainController = MainController;
 })(ContactManagerApp || (ContactManagerApp = {}));
 //# sourceMappingURL=mainController.js.map
