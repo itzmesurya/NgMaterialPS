@@ -3,10 +3,71 @@ var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
         function MainController($mdSidenav) {
+            /**
+             * Custom code
+             */
+
+            this.toppings = [{
+                    category: 'meat',
+                    name: 'Pepperoni'
+                },
+                {
+                    category: 'meat',
+                    name: 'Sausage'
+                },
+                {
+                    category: 'meat',
+                    name: 'Ground Beef'
+                },
+                {
+                    category: 'meat',
+                    name: 'Bacon'
+                },
+                {
+                    category: 'veg',
+                    name: 'Mushrooms'
+                },
+                {
+                    category: 'veg',
+                    name: 'Onion'
+                },
+                {
+                    category: 'veg',
+                    name: 'Green Pepper'
+                },
+                {
+                    category: 'veg',
+                    name: 'Green Olives'
+                }
+            ];
+            this.selectedToppings = [];
+            this.printSelectedToppings = function printSelectedToppings() {
+                var numberOfToppings = this.selectedToppings.length;
+
+                // If there is more than one topping, we add an 'and'
+                // to be gramatically correct. If there are 3+ toppings
+                // we also add an oxford comma.
+                if (numberOfToppings > 1) {
+                    var needsOxfordComma = numberOfToppings > 2;
+                    var lastToppingConjunction = (needsOxfordComma ? ',' : '') + ' and ';
+                    var lastTopping = lastToppingConjunction +
+                        this.selectedToppings[this.selectedToppings.length - 1];
+                    return this.selectedToppings.slice(0, -1).join(', ') + lastTopping;
+                }
+
+                return this.selectedToppings.join('');
+            };
+            /**End */
+
             this.$mdSidenav = $mdSidenav;
             this.message = "Hello from MainController code";
-            this.users = [
-                {
+            this.states = ('AL AK AZ').split(' ').map(function (state) {
+                return {
+                    abbrev: state
+                };
+            });
+            this.userState = '';
+            this.users = [{
                     "_id": "5914c04b35a44e6a835bc3ca",
                     "index": 0,
                     "guid": "ca7e8cd5-bfb0-4377-8ac3-145134357218",
@@ -34,8 +95,7 @@ var ContactManagerApp;
                         "est",
                         "nostrud"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Barrera Leonard"
                         },
@@ -79,8 +139,7 @@ var ContactManagerApp;
                         "ad",
                         "velit"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Annette Franco"
                         },
@@ -124,8 +183,7 @@ var ContactManagerApp;
                         "velit",
                         "occaecat"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Alisha Downs"
                         },
@@ -169,8 +227,7 @@ var ContactManagerApp;
                         "in",
                         "aute"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Karin Mccoy"
                         },
@@ -214,8 +271,7 @@ var ContactManagerApp;
                         "irure",
                         "incididunt"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Coffey Myers"
                         },
@@ -259,8 +315,7 @@ var ContactManagerApp;
                         "eiusmod",
                         "ad"
                     ],
-                    "friends": [
-                        {
+                    "friends": [{
                             "id": 0,
                             "name": "Franco Dean"
                         },

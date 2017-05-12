@@ -1,2 +1,33 @@
-<md-icon ng-show="vm.selected" md-svg-icon="face" class="md24"></md-icon>
+<md-icon ng-show="vm.selected" md-svg-icon="face" class="md24">
+</md-icon>
 <h2>{{vm.selected.name}}</h2>
+
+
+<md-input-container>
+    <label>State</label>
+    <md-select ng-model="vm.userState">
+        <md-option class="select-option"><em>None</em></md-option>
+        <md-option class="select-option" ng-repeat="state in vm.states" ng-value="state.abbrev">
+            {{state.abbrev}}
+        </md-option>
+    </md-select>
+</md-input-container>
+
+<div class="md-padding" ng-cloak>
+    <div>
+        <h1 class="md-title">Pick your pizza below</h1>
+        <div layout="row">
+            <md-input-container>
+                <label>Topping</label>
+                <md-select ng-model="vm.selectedToppings" multiple>
+
+                    <md-option ng-value="topping.name" ng-repeat="topping in vm.toppings | filter: {category: 'meat' }">{{topping.name}}</md-option>
+                    <md-option ng-value="topping.name" ng-repeat="topping in vm.toppings | filter: {category: 'veg' }">{{topping.name}}</md-option>
+
+                </md-select>
+            </md-input-container>
+        </div>
+        <p ng-if="vm.selectedToppings">You ordered a {{vm.size.toLowerCase()}} pizza with {{vm.printSelectedToppings()}}.
+        </p>
+    </div>
+</div>

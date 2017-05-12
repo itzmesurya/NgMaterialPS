@@ -22,3 +22,31 @@ md-toolbar .md-toolbar-tools h1{
     padding-right: 40px;
     padding-top: 5px;
 }
+
+/* Select Dropdown CSS */
+
+md-input-container {
+    width: 20%;
+}
+
+
+md-select-menu.md-default-theme md-content md-option:not([disabled]):hover, 
+md-select-menu md-content md-option:not([disabled]):hover, md-option.select-option:hover {
+    background-color: #516073;
+    box-shadow: 0 14px 26px -12px rgba(183, 181, 202, 0.42), 0 4px 23px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(121, 111, 199, 0.2);
+    color: #fff;
+    border-radius: 2px;
+    margin: 0 2px;
+}
+
+md-select-menu.md-default-theme md-content md-option[selected], md-select-menu md-content md-option[selected] {
+    color: rgb(33,150,243);
+    background: #eef5f9;
+}
+
+md-select-menu[multiple] md-option.md-checkbox-enabled .md-container {
+    right: 15px;
+    left: auto;
+}
+
+/* End Select Dropdown CSS */
