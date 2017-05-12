@@ -3,7 +3,6 @@ var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
         function MainController($mdSidenav, testDataService, $mdEditDialog, $q, $timeout) {
-            var vm = this;
             /**
              * Code to test the md-data-table - start
              */
